@@ -1,0 +1,18 @@
+# Editor
+*.swp
+*.swo
+*.bak
+
+# Data & logs
+*.csv
+logs/
+*.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment
+.env*
+*.token
