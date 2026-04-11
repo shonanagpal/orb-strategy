@@ -1,0 +1,15 @@
+# Core
+polars
+pytz
+python-dateutil
+
+# Kite
+kiteconnect
+
+# Google BigQuery
+google-cloud-bigquery
+
+# Utils
+requests
+urllib3
+

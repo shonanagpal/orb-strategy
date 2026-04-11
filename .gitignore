@@ -1,18 +1,6 @@
-# Editor
-*.swp
-*.swo
-*.bak
-
-# Data & logs
+venv/
+*.parquet
 *.csv
-logs/
-*.log
-
-# Python
+.env
 __pycache__/
-*.pyc
-*.pyo
-
-# Environment
-.env*
-*.token
+*.log
