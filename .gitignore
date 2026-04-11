@@ -1,6 +1,17 @@
+# Environments
 venv/
+venv_BACKTEST_ONLY/
+.env
+
+# Data and Large Files
 *.parquet
 *.csv
-.env
-__pycache__/
 *.log
+nifty500_5min_data/
+data_parquet/
+orb_strategy/data/
+
+# Specific heavy production folders
+production/common/
+__pycache__/
+*.pyc
