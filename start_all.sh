@@ -141,7 +141,7 @@ start_tmux() {
 
 # ---------- SERVICES ----------
 # Core Infrastructure — candle collector first, wait for ready before assembler/signal
-start_tmux candle "$PYTHON -m production.live_candle_collector.live_candle_collector" "$BASE_DIR/logs/candle.log"
+start_tmux candle "source $BASE_DIR/.env.kite && $PYTHON -m production.live_candle_collector.live_candle_collector" "$BASE_DIR/logs/candle.log"
 
 echo "⏳ Waiting for candle collector to be ready..."
 CANDLE_READY=0
@@ -157,16 +157,16 @@ if [ $CANDLE_READY -eq 0 ]; then
   echo "⚠️  Candle collector did not confirm ready after 60s — starting assembler anyway"
 fi
 
-start_tmux assembler "$PYTHON -m production.candle_assembler.run_assembler" "$BASE_DIR/logs/assembler.log"
+start_tmux assembler "source $BASE_DIR/.env.kite && $PYTHON -m production.candle_assembler.run_assembler" "$BASE_DIR/logs/assembler.log"
 sleep 3
-start_tmux signal "$PYTHON -m production.signal_generator.run_live" "$BASE_DIR/logs/signal.log"
+start_tmux signal "source $BASE_DIR/.env.kite && $PYTHON -m production.signal_generator.run_live" "$BASE_DIR/logs/signal.log"
 
 # Execution Engine
 if [[ "$MODE" == "live" ]]; then
-  start_tmux executor "$PYTHON -m production.live_executor.run_live_trades" "$BASE_DIR/logs/executor.log"
+  start_tmux executor "source $BASE_DIR/.env.kite && $PYTHON -m production.live_executor.run_live_trades" "$BASE_DIR/logs/executor.log"
   echo "Executor started in live mode"
 else
-  start_tmux executor "$PYTHON -m production.paper_executor.run_paper" "$BASE_DIR/logs/executor.log"
+  start_tmux executor "source $BASE_DIR/.env.kite && $PYTHON -m production.paper_executor.run_paper" "$BASE_DIR/logs/executor.log"
   echo "Executor started in paper mode"
 fi
 
